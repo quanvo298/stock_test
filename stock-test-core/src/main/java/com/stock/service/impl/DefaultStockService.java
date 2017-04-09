@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.stock.dto.TickerDto;
@@ -22,7 +23,7 @@ public class DefaultStockService implements StockService {
 
    @Autowired
    private StockDao stockDao;
-   
+
    @Override
    public TickerDto getTransaction(String tickerCode, Date startdate, Date endDate) throws StockException {
       if (tickerCode == null || startdate == null || endDate == null){
@@ -71,5 +72,10 @@ public class DefaultStockService implements StockService {
    @Override
    public List<String> getTickers() throws StockException {
       return this.stockDao.getTickers();
+   }
+
+   @Override
+   public TickerDto getTicker(String tickerCode) throws StockException {
+      return StockMapper.convertToDto(this.stockDao.getTicker(tickerCode));
    }
 }

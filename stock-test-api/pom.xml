@@ -9,11 +9,11 @@
    </parent>
    
 	<groupId>com.stock.api</groupId>
-	<artifactId>stock-test-api</artifactId>
+	<artifactId>stockPriceService</artifactId>
 	
-	<name>stock-test-api</name>
+	<name>stockPriceService</name>
 	<description></description>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	
 	<dependencies>
        <dependency>
@@ -78,7 +78,7 @@
         </profile>
     </profiles>
     <build>
-        <finalName>stock-test-api</finalName>
+        <finalName>stockPriceService</finalName>
         <defaultGoal>spring-boot:run</defaultGoal>
         <plugins>
             <plugin>

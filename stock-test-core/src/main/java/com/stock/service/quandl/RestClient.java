@@ -34,6 +34,18 @@ public class RestClient {
       return RestConvert.convertTicket(result);
    }
 
+   public Ticker retreiveTransactions() throws ClientProtocolException, IOException, ParseException {
+      StringBuilder stringBuilder = new StringBuilder(BaseURL);
+      stringBuilder = stringBuilder.append("?").append("&column_index=4");
+      String url = stringBuilder.toString();
+      HttpClient httpClient = HttpClients.createDefault();
+      final HttpGet httpGet = new HttpGet(url);
+      final HttpResponse httpResponse = httpClient.execute(httpGet);
+      JSONObject result = parseResult(httpResponse);
+      return RestConvert.convertTicket(result);
+   }
+
+   
    private JSONObject parseResult(final HttpResponse httpResponse) throws IOException {
       final BufferedReader reader = new BufferedReader(new InputStreamReader(httpResponse.getEntity().getContent()));
 

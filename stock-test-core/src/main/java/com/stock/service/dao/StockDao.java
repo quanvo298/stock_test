@@ -8,6 +8,8 @@ import com.stock.model.Ticker;
 
 public interface StockDao {
 
+   public Ticker getTicker(String tickerCode) throws StockException;
+   
    public Ticker retreiveTransactions(String tickerCode, Date startDate, Date endDate) throws StockException;
    
    public List<Ticker> retreiveTransactions(List<String> tickerCode, Date startDate, Date endDate) throws StockException;

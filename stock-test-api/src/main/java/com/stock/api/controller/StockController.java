@@ -25,11 +25,17 @@ public class StockController {
    @Autowired
    private StockService stockService;
    
+   
    @RequestMapping(value="/api/v2/{ticker}/closePrice", method=RequestMethod.GET)
    public PriceResource getTicker(final @PathVariable("ticker") String ticker, 
-         @RequestParam(name="startDate", required=true) @DateTimeFormat(pattern="yyyy-mm-dd") final Date startDate,
-         @RequestParam(name="endDate", required=true) @DateTimeFormat(pattern="yyyy-mm-dd") final Date endDate) throws StockException{
-      TickerDto tickerDto = this.stockService.getTransaction(ticker, startDate, endDate);
+         @RequestParam(name="startDate", required=false) @DateTimeFormat(pattern="yyyy-mm-dd") final Date startDate,
+         @RequestParam(name="endDate", required=false) @DateTimeFormat(pattern="yyyy-mm-dd") final Date endDate) throws StockException{
+      TickerDto tickerDto = null;
+      if (startDate == null || endDate == null){
+         tickerDto = this.stockService.getTicker(ticker);
+      }else {
+         tickerDto = this.stockService.getTransaction(ticker, startDate, endDate);
+      }
       return PriceResource.convert(tickerDto);
    }
    

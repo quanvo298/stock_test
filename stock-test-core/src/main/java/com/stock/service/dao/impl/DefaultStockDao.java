@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.stock.exception.StockException;
@@ -57,5 +58,15 @@ public class DefaultStockDao implements StockDao {
       Ticker ticker = new Ticker();
       ticker.setName(tickerCode);
       return ticker;
+   }
+
+   @Override
+   @Cacheable(cacheNames = "closeDatesTikcerCache", key = "#tickerCode")
+   public Ticker getTicker(String tickerCode) throws StockException {
+      try {
+         return this.restClient.retreiveTransactions();
+      } catch (IOException | ParseException exception) {
+         throw new StockException(exception.getMessage(), exception);
+      }
    }
 }

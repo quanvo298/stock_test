@@ -25,6 +25,7 @@
    
    <modules>
    	<module>stock-test-core</module>
+   	
    	<module>stock-test-api</module>
    </modules>
    
