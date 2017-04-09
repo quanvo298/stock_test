@@ -1,6 +1,6 @@
 # stock_test
 1) Clonse sourcecode
- - Setup java 8, maven 3.2.xxx
+ - Setup java 8, maven 3.3.xxx
 2) Go to stock-test-app folder
 3) Run command: mvn clean install
 4) Go to stock-test-api folder
