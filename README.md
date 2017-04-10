@@ -9,3 +9,7 @@
     - http://localhost:8080/api/v2/GE/closePrice?startDate=2017-01-01&endDate=2017-01-03
     - http://localhost:8080/api/v2/GE/200mda?startDate=2017-01-01
     - http://localhost:8080/api/v2/200mda?startDate=2017-01-01
+
+7) To Test Cache system:
+    - First time, Access URL: http://localhost:8080/api/v2/GE/closePrice. This is first time so It loads so slow
+    - Second time, Access URL: http://localhost:8080/api/v2/GE/closePrice. Because GE ticker is cached so this request will response so faster
